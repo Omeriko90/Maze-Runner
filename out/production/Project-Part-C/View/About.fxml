@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.image.ImageView?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutController">
+    <children>
+        <Label layoutX="14.0" layoutY="9.0" prefHeight="93.0" prefWidth="263.0" text="Creators:&#10;Racheli Gvily 305125924 originly from Afula&#10;Omer Domb 302587316 originly from Qiryat Ata" />
+        <Label layoutX="14.0" layoutY="116.0" text="For creating the maze we are using the prim algorithm&#10;" />
+        <Label layoutX="14.0" layoutY="147.0" text="For the solving of the maze we have 3 algorithm:&#10;BFS, DFS and Best FS, where the default algorithm is the Best FS" />
+    </children>
+</AnchorPane>

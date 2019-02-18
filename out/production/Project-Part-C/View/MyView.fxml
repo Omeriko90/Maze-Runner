@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import View.CharacterDisplayer?>
+<?import View.MazeDisplayer?>
+<?import View.SolveDisplayer?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane onKeyPressed="#KeyPressed" prefHeight="450.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+    <left>
+        <VBox prefHeight="200.0" prefWidth="178.0" spacing="5.0" BorderPane.alignment="CENTER">
+            <children>
+                <GridPane prefHeight="196.0" prefWidth="168.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+                    </rowConstraints>
+                    <Label text="Maze rows:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label text="Maze columns:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtfld_rowsNum" disable="false" text="50" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtfld_columnsNum" disable="false" text="50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Button fx:id="btn_generateMaze" onAction="#generateMaze" prefHeight="25.0" prefWidth="167.0" text="Generate Maze" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                    <Button fx:id="btn_solveMaze" cancelButton="true" disable="true" onAction="#solveMaze" prefHeight="25.0" prefWidth="167.0" text="Solve Maze" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                    <Button fx:id="btn_playMusic" onAction="#playMusic" prefHeight="25.0" prefWidth="167.0" text="Play Music" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                    <Button fx:id="btn_stopMusic" onAction="#stopMusic" prefHeight="25.0" prefWidth="167.0" text="Stop Music" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                    <Label text="Char row:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                    <Label text="Char column:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                    <Label fx:id="lbl_rowsNum" text="${controller.characterRowPosition}" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Label fx:id="lbl_columnsNum" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                </GridPane>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" minWidth="10.0" prefWidth="48.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <ChoiceBox fx:id="chosenCharacter" prefHeight="25.0" prefWidth="105.0" GridPane.rowIndex="1" />
+                        <Label text="Choose a character" />
+                    </children>
+                </GridPane>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </VBox>
+    </left>
+    <bottom>
+        <HBox prefHeight="33.0" prefWidth="620.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label graphicTextGap="100.0" prefHeight="17.0" prefWidth="52.0" text="Volume" />
+            <Slider fx:id="volumeController" layoutX="10.0" prefHeight="25.0" prefWidth="121.0" HBox.hgrow="NEVER">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+               <effect>
+                  <Reflection />
+               </effect></Slider>
+            </children>
+        </HBox>
+    </bottom>
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#generateMaze" text="New" />
+                                <MenuItem mnemonicParsing="false" onAction="#saveMaze" text="Save" />
+                                <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load" />
+                                <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Options">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#prop" text="Properties" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Exit">
+                            <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <MenuItem mnemonicParsing="false" onAction="#help" text="Help" />
+                            <MenuItem mnemonicParsing="false" onAction="#About" text="About" />
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <Pane fx:id="pane" BorderPane.alignment="CENTER">
+            <children>
+                <MazeDisplayer fx:id="mazeDisplayer" height="${pane.height}" imageFileNameExit="/Images/exit.png" imageFileNameWall="/Images/wall.jpg" width="${pane.width}" />
+                <CharacterDisplayer fx:id="characterDisplayer" height="${pane.height}" imageFileNameCharacter="/Images/character1.png" width="${pane.width}" />
+                <SolveDisplayer fx:id="solveDisplayer" height="${pane.height}" imageFileNameSol="/Images/sol.png" width="${pane.width}" />
+                <ImageView fx:id="anger" fitHeight="100.0" fitWidth="100.0" layoutX="25" preserveRatio="true" />
+                <ImageView fx:id="blueMonster" fitHeight="100.0" fitWidth="100.0" layoutX="25" layoutY="20" preserveRatio="true" />
+                <ImageView fx:id="dora" disable="false" fitHeight="100.0" fitWidth="100.0" layoutX="30" layoutY="50" preserveRatio="true" />
+                <ImageView fx:id="pikachu" disable="false" fitHeight="100.0" fitWidth="130.0" layoutX="0" layoutY="90" preserveRatio="true" />
+                <ImageView fx:id="dexter" disable="false" fitHeight="100.0" fitWidth="100.0" layoutX="5" layoutY="130" preserveRatio="true" />
+                <ImageView fx:id="blossom" disable="false" fitHeight="100.0" fitWidth="100.0" layoutX="15" layoutY="170" preserveRatio="true" />
+                <ImageView fx:id="Exit" disable="false" fitHeight="100.0" fitWidth="100.0" layoutX="5" layoutY="200" preserveRatio="true" />
+                <ImageView fx:id="winner" disable="false" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" />
+                <Text fx:id="angerText" layoutX="170" layoutY="35" />
+                <Text fx:id="blueMonsterText" layoutX="170" layoutY="120" />
+                <Text fx:id="doraText" layoutX="170" layoutY="220" />
+                <Text fx:id="pikachuText" layoutX="170" layoutY="330" />
+                <Text fx:id="dexterText" layoutX="170" layoutY="420" />
+                <Text fx:id="blossomText" layoutX="170" layoutY="515" />
+                <Text fx:id="ExitText" layoutX="170" layoutY="630" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Pane>
+    </center>
+</BorderPane>
